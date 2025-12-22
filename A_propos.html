@@ -9,8 +9,27 @@
     <style>body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfcfb; }.serif { font-family: 'Playfair Display', serif; }</style>
 </head>
 <body>
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 px-6 py-4 text-center">
-        <a href="index.html" class="text-xl font-extrabold tracking-tighter">S'envoler.</a>
+    <!-- Navigation -->
+    <nav class="glass-nav sticky top-0 z-50 px-6 py-4 border-b border-gray-100/50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="w-10 h-10 gradient-btn rounded-xl flex items-center justify-center text-white">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-tighter">S'envoler.</span>
+            </div>
+
+            <div class="hidden md:flex items-center space-x-8 text-sm font-bold uppercase tracking-widest text-slate-500">
+                <button onclick="window.location.href='index.html'" class="hover:text-indigo-600 transition">Accueil</button>
+                <button onclick="window.location.href='Guide.html'" class="hover:text-indigo-600 transition">Guides</button>
+                <button onclick="window.location.href='securite.html'" class="text-red-500 hover:text-red-700 transition">Arnaques 🚨</button>
+                <button onclick="window.location.href='A_propos.html'" class="text-indigo-600 hover:text-indigo-600 transition">À Propos</button>
+            </div>
+
+            <button onclick="window.location.href='index.html#checklist'" class="gradient-btn text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-lg">
+                Ma Checklist
+            </button>
+        </div>
     </nav>
 
     <main class="max-w-3xl mx-auto px-6 py-20">
