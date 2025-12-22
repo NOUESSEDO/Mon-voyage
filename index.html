@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S'envoler - Guide Bénin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-primary: #FF6F61;
+            --brand-secondary: #6B4EE6;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fdfcfb;
+            scroll-behavior: smooth;
+        }
+
+        .serif { font-family: 'Playfair Display', serif; }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .gradient-btn {
+            background: linear-gradient(135deg, var(--brand-secondary), var(--brand-primary));
+            transition: all 0.3s ease;
+        }
+
+        .gradient-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(107, 78, 230, 0.2);
+        }
+
+        /* Système de sections (SPA) */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bg-blob {
+            position: fixed;
+            z-index: -1;
+            filter: blur(70px);
+            opacity: 0.3;
+            border-radius: 50%;
+        }
+
+        .card-shadow {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="text-slate-900">
+
+    <!-- Blobs style Canva -->
+    <div class="bg-blob w-96 h-96 bg-purple-200 -top-20 -left-20"></div>
+    <div class="bg-blob w-80 h-80 bg-orange-100 bottom-10 right-10"></div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav sticky top-0 z-50 px-6 py-4 border-b border-gray-100/50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2 cursor-pointer" onclick="showPage('home')">
+                <div class="w-10 h-10 gradient-btn rounded-xl flex items-center justify-center text-white">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-tighter">S'envoler.</span>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8 text-sm font-bold uppercase tracking-widest text-slate-500">
+                <button onclick="showPage('home')" class="hover:text-indigo-600 transition">Accueil</button>
+                <button onclick="showPage('destinations')" class="hover:text-indigo-600 transition">Destinations</button>
+                <button onclick="showPage('safety')" class="text-red-500 hover:text-red-700 transition">Arnaques 🚨</button>
+            </div>
+
+            <button onclick="showPage('checklist')" class="gradient-btn text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-lg">
+                Ma Checklist
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 py-12">
+
+        <!-- SECTION : ACCUEIL -->
+        <section id="home" class="page-section active">
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-24">
+                <div class="space-y-8">
+                    <span class="inline-block px-4 py-1.5 bg-orange-100 text-orange-600 rounded-full text-xs font-black uppercase tracking-widest">Guide Officiel Bénin 🇧🇯</span>
+                    <h1 class="serif text-6xl md:text-7xl leading-tight">Votre voyage commence <span class="text-indigo-600">ici.</span></h1>
+                    <p class="text-lg text-slate-500 leading-relaxed max-w-md">
+                        Le portail n°1 pour préparer son départ du Bénin. Études, travail ou tourisme, nous vous guidons étape par étape.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button onclick="showPage('type-voyage')" class="gradient-btn text-white px-10 py-5 rounded-2xl font-bold shadow-xl">Préparer mon plan</button>
+                        <button onclick="showPage('destinations')" class="bg-white border border-gray-100 px-10 py-5 rounded-2xl font-bold hover:bg-gray-50 transition card-shadow">Voir les pays</button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="rounded-[40px] overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80" alt="Voyage" class="w-full h-[500px] object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-xl flex items-center space-x-4 border border-gray-50">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600"><i class="fa-solid fa-shield-check text-xl"></i></div>
+                        <div><p class="text-sm font-black uppercase">Vérifié</p><p class="text-xs text-slate-400 font-bold">bon voyage</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION : TYPE DE VOYAGE -->
+        <section id="type-voyage" class="page-section max-w-3xl mx-auto text-center">
+            <h2 class="serif text-5xl mb-12">Quel est votre <span class="text-indigo-600">projet</span> ?</h2>
+            <div class="grid gap-4">
+                <button onclick="selectType('Étudiant')" class="p-8 bg-white rounded-[32px] card-shadow border-2 border-transparent hover:border-indigo-500 transition-all flex items-center justify-between group">
+                    <div class="flex items-center space-x-6">
+                        <div class="text-4xl">🎓</div>
+                        <div class="text-left">
+                            <h4 class="font-bold text-xl">Études à l'étranger</h4>
+                            <p class="text-sm text-slate-400">Admission, Campus France, Bourse...</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-slate-300 group-hover:text-indigo-500 group-hover:translate-x-2 transition"></i>
+                </button>
+                <button onclick="selectType('Travailleur')" class="p-8 bg-white rounded-[32px] card-shadow border-2 border-transparent hover:border-indigo-500 transition-all flex items-center justify-between group">
+                    <div class="flex items-center space-x-6">
+                        <div class="text-4xl">💼</div>
+                        <div class="text-left">
+                            <h4 class="font-bold text-xl">Opportunité de Travail</h4>
+                            <p class="text-sm text-slate-400">Contrat, Visa de travail, Permis...</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-slate-300 group-hover:text-indigo-500 group-hover:translate-x-2 transition"></i>
+                </button>
+            </div>
+            <div id="type-confirm" class="mt-12 hidden p-6 bg-indigo-50 rounded-3xl animate-bounce">
+                <p class="font-bold text-indigo-600 mb-4">Excellent choix ! Passons à la destination.</p>
+                <button onclick="showPage('destinations')" class="gradient-btn text-white px-8 py-3 rounded-xl font-bold">Continuer</button>
+            </div>
+        </section>
+
+        <!-- SECTION : DESTINATIONS -->
+        <section id="destinations" class="page-section">
+            <h2 class="serif text-5xl text-center mb-16">Où voulez-vous <span class="text-indigo-600">aller</span> ?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div onclick="showCountry('France')" class="group relative h-[400px] rounded-[32px] overflow-hidden cursor-pointer card-shadow">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8 text-white"><h3 class="text-3xl font-bold">France 🇫🇷</h3></div>
+                </div>
+                <div onclick="showCountry('Canada')" class="group relative h-[400px] rounded-[32px] overflow-hidden cursor-pointer card-shadow">
+                    <img src="https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8 text-white"><h3 class="text-3xl font-bold">Canada 🇨🇦</h3></div>
+                </div>
+                <div onclick="showCountry('Maroc')" class="group relative h-[400px] rounded-[32px] overflow-hidden cursor-pointer card-shadow">
+                    <img src="https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=600&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8 text-white"><h3 class="text-3xl font-bold">Maroc 🇲🇦</h3></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION : DETAILS PAYS (DYNAMIQUE) -->
+        <section id="country-details" class="page-section max-w-4xl mx-auto">
+            <button onclick="showPage('destinations')" class="mb-8 font-bold text-slate-400 hover:text-indigo-600 transition flex items-center">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Retour aux destinations
+            </button>
+            <div class="bg-white rounded-[40px] overflow-hidden card-shadow">
+                <div id="country-hero" class="h-64 bg-indigo-600 flex items-center justify-center text-white text-5xl font-bold serif">
+                    <!-- Titre injecté par JS -->
+                </div>
+                <div class="p-12">
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h4 class="font-black uppercase text-xs tracking-widest text-slate-400 mb-6">Informations Pratiques</h4>
+                            <ul id="info-list" class="space-y-4 font-bold text-slate-700">
+                                <!-- Liste injectée -->
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 flex flex-col items-center justify-center text-center">
+                            <i class="fa-brands fa-youtube text-5xl text-red-500 mb-4"></i>
+                            <h5 class="font-bold mb-2">Guide Vidéo</h5>
+                            <p class="text-sm text-slate-500">"S'installer avec succès en <span id="country-name-txt"></span>"</p>
+                        </div>
+                    </div>
+                    <div class="mt-12 pt-12 border-t flex justify-center">
+                        <button onclick="showPage('safety')" class="bg-red-50 text-red-600 px-8 py-4 rounded-2xl font-bold hover:bg-red-100 transition">Vérifier la sécurité 🚨</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION : SECURITÉ & ARNAQUES -->
+        <section id="safety" class="page-section">
+            <div class="bg-red-50 rounded-[40px] p-12 md:p-20 relative overflow-hidden">
+                <div class="relative z-10">
+                    <h2 class="serif text-5xl text-red-600 mb-8">Ne vous faites pas <span class="text-red-900 underline">arnaquer.</span></h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white p-8 rounded-[32px] shadow-sm">
+                            <h4 class="font-bold text-red-600 mb-4">🚩 Signaux d'alerte</h4>
+                            <ul class="space-y-4 text-sm text-slate-600">
+                                <li class="flex items-center"><i class="fa-solid fa-xmark-circle mr-3 text-red-400"></i> Promesse de visa "garanti à 100%"</li>
+                                <li class="flex items-center"><i class="fa-solid fa-xmark-circle mr-3 text-red-400"></i> Paiement demandé par Mobile Money uniquement</li>
+                                <li class="flex items-center"><i class="fa-solid fa-xmark-circle mr-3 text-red-400"></i> Agent prétendant avoir des "amis" à l'ambassade</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-8 rounded-[32px] shadow-sm">
+                            <h4 class="font-bold text-green-600 mb-4">✅ La vraie voie</h4>
+                            <ul class="space-y-4 text-sm text-slate-600">
+                                <li class="flex items-center"><i class="fa-solid fa-check-circle mr-3 text-green-400"></i> Dépôt physique dans un centre officiel (VFS, TLS)</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check-circle mr-3 text-green-400"></i> Frais payés à la banque ou via site gouvernemental</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check-circle mr-3 text-green-400"></i> Informations prises sur les sites .gouv ou .fr/.ca</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION : CHECKLIST -->
+        <section id="checklist" class="page-section max-w-2xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="serif text-5xl mb-4">Ma <span class="text-indigo-600">Checklist.</span></h2>
+                <p class="text-slate-400 font-bold uppercase text-xs tracking-widest">Suivez vos étapes</p>
+            </div>
+            <div class="bg-white rounded-[40px] p-10 card-shadow space-y-4">
+                <label class="flex items-center p-6 border-2 border-slate-50 rounded-3xl cursor-pointer hover:bg-slate-50 transition group">
+                    <input type="checkbox" class="w-6 h-6 rounded-lg text-indigo-600 focus:ring-indigo-500 mr-4">
+                    <span class="font-bold text-slate-700">Passeport valide au moins 6 mois</span>
+                </label>
+                <label class="flex items-center p-6 border-2 border-slate-50 rounded-3xl cursor-pointer hover:bg-slate-50 transition group">
+                    <input type="checkbox" class="w-6 h-6 rounded-lg text-indigo-600 focus:ring-indigo-500 mr-4">
+                    <span class="font-bold text-slate-700">Attestation d'admission ou Contrat</span>
+                </label>
+                <label class="flex items-center p-6 border-2 border-slate-50 rounded-3xl cursor-pointer hover:bg-slate-50 transition group">
+                    <input type="checkbox" class="w-6 h-6 rounded-lg text-indigo-600 focus:ring-indigo-500 mr-4">
+                    <span class="font-bold text-slate-700">Justificatif de ressources (Banque)</span>
+                </label>
+                <label class="flex items-center p-6 border-2 border-slate-50 rounded-3xl cursor-pointer hover:bg-slate-50 transition group">
+                    <input type="checkbox" class="w-6 h-6 rounded-lg text-indigo-600 focus:ring-indigo-500 mr-4">
+                    <span class="font-bold text-slate-700">Rendez-vous ambassade confirmé</span>
+                </label>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-20 py-12 border-t border-slate-100 text-center">
+        <p class="font-bold text-slate-400 uppercase text-xs tracking-[0.2em]">S'envoler - 2025 Bénin</p>
+    </footer>
+
+    <script>
+        // NAVIGATION SYSTEM
+        function showPage(pageId) {
+            // Cacher toutes les pages
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Afficher la page cible
+            const target = document.getElementById(pageId);
+            if(target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // SELECTION TYPE
+        function selectType(type) {
+            document.getElementById('type-confirm').classList.remove('hidden');
+        }
+
+        // PAYS DYNAMIQUE
+        const paysData = {
+            'France': { monnaie: 'Euro (€)', climat: 'Tempéré', langue: 'Français', cout: 'Élevé', color: '#002395' },
+            'Canada': { monnaie: 'Dollar CAD', climat: 'Froid/Continental', langue: 'Français/Anglais', cout: 'Moyen+', color: '#FF0000' },
+            'Maroc': { monnaie: 'Dirham MAD', climat: 'Méditerranéen', langue: 'Arabe/Français', cout: 'Abordable', color: '#c1272d' }
+        };
+
+        function showCountry(name) {
+            const data = paysData[name];
+            const hero = document.getElementById('country-hero');
+            const list = document.getElementById('info-list');
+            const txt = document.getElementById('country-name-txt');
+
+            hero.innerText = name;
+            hero.style.backgroundColor = data.color;
+            txt.innerText = name;
+
+            list.innerHTML = `
+                <li class="flex items-center"><i class="fa-solid fa-coins mr-3 text-indigo-500"></i> ${data.monnaie}</li>
+                <li class="flex items-center"><i class="fa-solid fa-cloud-sun mr-3 text-indigo-500"></i> ${data.climat}</li>
+                <li class="flex items-center"><i class="fa-solid fa-language mr-3 text-indigo-500"></i> ${data.langue}</li>
+                <li class="flex items-center"><i class="fa-solid fa-wallet mr-3 text-indigo-500"></i> Vie : ${data.cout}</li>
+            `;
+
+            showPage('country-details');
+        }
+    </script>
+</body>
+</html>
